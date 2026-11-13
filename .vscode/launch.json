@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug ReminderAgent (Manual loop)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/ReminderAgent/bin/Debug/net10.0/ReminderAgent.dll",
+      "args": ["--AGENT_MODE", "Manual"],
+      "cwd": "${workspaceFolder}/src/ReminderAgent",
+      // The app reads from Console.ReadLine, which the Debug Console can't feed. The terminal can.
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Debug ReminderAgent (SDK ToolRunner)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/ReminderAgent/bin/Debug/net10.0/ReminderAgent.dll",
+      "args": ["--AGENT_MODE", "ToolRunner"],
+      "cwd": "${workspaceFolder}/src/ReminderAgent",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}
