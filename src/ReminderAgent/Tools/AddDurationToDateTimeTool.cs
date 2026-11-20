@@ -11,9 +11,13 @@ public sealed class AddDurationToDateTimeTool : IAgentTool
 {
     private static readonly string[] Units = ["hours", "days", "weeks", "months"];
 
-    public Tool Definition { get; } = new()
+    private const string ToolName = "add_duration_to_datetime";
+
+    public string Name => ToolName;
+
+    public ToolUnion Definition { get; } = new Tool
     {
-        Name = "add_duration_to_datetime",
+        Name = ToolName,
         Description =
             "Adds a duration to a datetime and returns the resulting datetime and its day of the week. " +
             "Use it for every date calculation instead of computing dates yourself, e.g. \"in 3 days\" " +

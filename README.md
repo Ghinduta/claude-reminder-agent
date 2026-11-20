@@ -16,6 +16,8 @@ It uses the official [Anthropic C# SDK](https://www.nuget.org/packages/Anthropic
 | `get_current_datetime` | Returns the local date and time, with an optional .NET format string |
 | `add_duration_to_datetime` | Adds hours, days, weeks or months to a datetime |
 | `set_reminder` | Saves a reminder to `reminders.json` (git-ignored) |
+| `web_search` | Anthropic's server-side web search (`web_search_20260209`), for public event dates. Runs on Anthropic's servers, max 3 searches per request |
+| `str_replace_based_edit_tool` | Anthropic's text editor tool (`text_editor_20250728`): `view`, `create`, `str_replace`, `insert` on notes in `notes/` (git-ignored). Paths outside `notes/` and links are refused; `create` never overwrites |
 
 ## Run it
 
@@ -57,6 +59,7 @@ src/ReminderAgent/
   Tools/GetCurrentDateTimeTool.cs     get_current_datetime
   Tools/AddDurationToDateTimeTool.cs  add_duration_to_datetime
   Tools/SetReminderTool.cs            set_reminder
+  Tools/TextEditorTool.cs             str_replace_based_edit_tool, confined to notes/
   Reminders/Reminder.cs               reminder record
   Reminders/ReminderStore.cs          reads/writes reminders.json
   Ui/ConsoleChat.cs                   read-eval-print loop

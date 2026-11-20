@@ -36,6 +36,7 @@ services.AddSingleton(_ => new ReminderStore("reminders.json"));
 services.AddSingleton<IAgentTool, GetCurrentDateTimeTool>();
 services.AddSingleton<IAgentTool, AddDurationToDateTimeTool>();
 services.AddSingleton<IAgentTool, SetReminderTool>();
+services.AddSingleton<IAgentTool>(_ => new TextEditorTool("notes"));
 services.AddSingleton<ToolExecutor>();
 
 // The only place that knows which loop runs; everything else depends on IAgent.
