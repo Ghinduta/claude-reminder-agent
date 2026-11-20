@@ -11,9 +11,9 @@ public sealed record ToolExecutionResult(string Content, bool IsError);
 /// </summary>
 public sealed class ToolExecutor(IEnumerable<IAgentTool> tools)
 {
-    private readonly Dictionary<string, IAgentTool> _toolsByName = tools.ToDictionary(t => t.Definition.Name);
+    private readonly Dictionary<string, IAgentTool> _toolsByName = tools.ToDictionary(t => t.Name);
 
-    public IEnumerable<Tool> Definitions => _toolsByName.Values.Select(t => t.Definition);
+    public IEnumerable<ToolUnion> Definitions => _toolsByName.Values.Select(t => t.Definition);
 
     public ToolExecutionResult Execute(string toolName, IReadOnlyDictionary<string, JsonElement> input)
     {

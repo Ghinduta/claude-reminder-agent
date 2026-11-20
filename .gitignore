@@ -481,5 +481,6 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Reminders saved by the app (personal data)
+# Reminders and notes saved by the app (personal data)
 reminders.json
+notes/

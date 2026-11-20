@@ -26,6 +26,18 @@ public sealed class ConsoleView
     public void ShowToolResult(ToolExecutionResult result) =>
         Console.WriteLine(result.IsError ? $"  [error] {result.Content}" : $"  [result] {result.Content}");
 
+    public void ShowWebSearch(string query) => Console.WriteLine($"  [search] {query}");
+
+    public void ShowWebSearchError(string errorCode) => Console.WriteLine($"  [search error] {errorCode}");
+
+    public void ShowSources(IEnumerable<(string Title, string Url)> sources)
+    {
+        foreach ((string title, string url) in sources)
+        {
+            Console.WriteLine($"  [source] {title} - {url}");
+        }
+    }
+
     public void ShowNotice(string message) => Console.WriteLine($"\n[{message}]");
 
     public void ShowError(string message) => Console.Error.WriteLine($"\nerror: {message}");

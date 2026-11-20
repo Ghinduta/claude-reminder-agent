@@ -9,9 +9,13 @@ namespace ReminderAgent.Tools;
 /// </summary>
 public sealed class SetReminderTool(ReminderStore store, TimeProvider timeProvider) : IAgentTool
 {
-    public Tool Definition { get; } = new()
+    private const string ToolName = "set_reminder";
+
+    public string Name => ToolName;
+
+    public ToolUnion Definition { get; } = new Tool
     {
-        Name = "set_reminder",
+        Name = ToolName,
         Description =
             "Saves a reminder for the user. Call it only once the exact due date and time are known; " +
             "use get_current_datetime and add_duration_to_datetime first to work them out. " +

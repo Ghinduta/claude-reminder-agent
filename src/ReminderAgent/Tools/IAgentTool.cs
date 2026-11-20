@@ -8,8 +8,14 @@ namespace ReminderAgent.Tools;
 /// </summary>
 public interface IAgentTool
 {
-    /// <summary>Name, description and JSON input schema sent to the API in the Tools list.</summary>
-    Tool Definition { get; }
+    /// <summary>The name Claude uses in tool_use blocks; must match the name in <see cref="Definition"/>.</summary>
+    string Name { get; }
+
+    /// <summary>
+    /// What is sent to the API in the Tools list: either a custom <see cref="Tool"/> with our own JSON
+    /// schema, or an Anthropic-defined tool (such as the text editor) whose schema is built into the model.
+    /// </summary>
+    ToolUnion Definition { get; }
 
     /// <summary>
     /// Runs the tool with the input Claude chose. The returned string becomes the tool_result content.

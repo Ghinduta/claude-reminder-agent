@@ -12,9 +12,13 @@ public sealed class GetCurrentDateTimeTool(TimeProvider timeProvider) : IAgentTo
 {
     private const string DefaultFormat = "yyyy-MM-dd HH:mm:ss";
 
-    public Tool Definition { get; } = new()
+    private const string ToolName = "get_current_datetime";
+
+    public string Name => ToolName;
+
+    public ToolUnion Definition { get; } = new Tool
     {
-        Name = "get_current_datetime",
+        Name = ToolName,
         Description =
             "Returns the user's current local date and time, including the day of the week and the " +
             "UTC offset. Call this before working out any relative date or time (\"tomorrow\", " +

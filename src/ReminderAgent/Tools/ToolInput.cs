@@ -26,6 +26,25 @@ public static class ToolInput
     public static string GetRequiredString(this IReadOnlyDictionary<string, JsonElement> input, string name) =>
         input.GetOptionalString(name) ?? throw new ArgumentException($"'{name}' is required.");
 
+    /// <summary>
+    /// Reads a string exactly as Claude sent it. Unlike <see cref="GetRequiredString"/>, an empty or
+    /// whitespace-only value is allowed, because file text and replacement text can legitimately be empty.
+    /// </summary>
+    public static string GetRequiredText(this IReadOnlyDictionary<string, JsonElement> input, string name)
+    {
+        if (!input.TryGetValue(name, out JsonElement element))
+        {
+            throw new ArgumentException($"'{name}' is required.");
+        }
+
+        if (element.ValueKind != JsonValueKind.String)
+        {
+            throw new ArgumentException($"'{name}' must be a string.");
+        }
+
+        return element.GetString()!;
+    }
+
     public static int GetRequiredInt(this IReadOnlyDictionary<string, JsonElement> input, string name)
     {
         if (!input.TryGetValue(name, out JsonElement element))
